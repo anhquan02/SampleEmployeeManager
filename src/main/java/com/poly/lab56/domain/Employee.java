@@ -1,5 +1,8 @@
 package com.poly.lab56.domain;
 
+import java.util.Date;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -20,9 +23,12 @@ public class Employee {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String name;
+    @Column(unique=true)
     private String email;
     private String address;
+    @Column(unique=true)
     private String phone;
+    private Date create_at;
     @OneToOne(fetch = FetchType.EAGER)
     private Major major;
 }

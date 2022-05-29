@@ -2,6 +2,7 @@ package com.poly.lab56;
 
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Date;
 
 import com.poly.lab56.domain.Employee;
 import com.poly.lab56.domain.Major;
@@ -26,20 +27,21 @@ public class Lab56Application {
 	@Bean
 	CommandLineRunner runner(MajorService majorService, EmployeeService employeeService) {
 		return args -> {
-
+			
+			Date date = new Date();
 			majorService.saveMajor(new Major(null, "Business Analyst"));
 			majorService.saveMajor(new Major(null, "Designer"));
 			majorService.saveMajor(new Major(null, "Tester"));
 			majorService.saveMajor(new Major(null, "Developer"));
 
 			employeeService
-					.saveEmployee(new Employee(null, "Le Anh Quan", "quan.leanh.02@gmail.com", "Ha noi","0772373651", null));
+					.saveEmployee(new Employee(null, "Le Anh Quan", "quan.leanh.02@gmail.com", "Ha noi","0772373651",date, null));
 			employeeService.saveMajorToEmp("quan.leanh.02@gmail.com", "Developer");
 			employeeService
-					.saveEmployee(new Employee(null, "Le Anh Quan", "quan.leanh.202@gmail.com", "Ha noi","0772373652", null));
+					.saveEmployee(new Employee(null, "Le Anh Quan", "quan.leanh.202@gmail.com", "Ha noi","0772373652",date, null));
 			employeeService.saveMajorToEmp("quan.leanh.202@gmail.com", "Business Analyst");
 			employeeService.saveEmployee(
-					new Employee(null, "Le Anh Quan", "quan.leanh.2002@gmail.com", "Ha noi","0772373653", null));
+					new Employee(null, "Le Anh Quan", "quan.leanh.2002@gmail.com", "Ha noi","0772373653",date, null));
 			employeeService.saveMajorToEmp("quan.leanh.2002@gmail.com", "Designer");
 		};
 	}

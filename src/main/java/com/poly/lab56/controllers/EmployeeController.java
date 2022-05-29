@@ -32,6 +32,10 @@ public class EmployeeController {
     public ResponseEntity getAll(){
         return ResponseEntity.ok().body(this.service.getAll());
     }
+    @GetMapping("/employees/major")
+    public ResponseEntity getAllByMajor(@RequestParam Long id){
+        return ResponseEntity.ok().body(this.service.getAllByMajor(id));
+    }
 
     @GetMapping("/employee")
     public ResponseEntity<Employee> getById(@RequestParam Long id){
@@ -59,7 +63,8 @@ public class EmployeeController {
         }
     }
 
-    public ResponseEntity<HttpStatus> deleteListEmployee(@RequestParam List<Long> ids){
+    @DeleteMapping("/employee/list")
+    public ResponseEntity<HttpStatus> deleteListEmployee(@RequestBody List<Long> ids){
         try {
             this.service.removeList(ids);
             return new ResponseEntity<HttpStatus>(HttpStatus.OK);

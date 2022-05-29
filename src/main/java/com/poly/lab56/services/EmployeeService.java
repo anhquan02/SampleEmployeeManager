@@ -1,5 +1,6 @@
 package com.poly.lab56.services;
 
+import java.util.Date;
 import java.util.List;
 
 import com.poly.lab56.domain.Employee;
@@ -18,6 +19,7 @@ public class EmployeeService {
     private final IMajorRepository majorRepository;
 
     public Employee saveEmployee(Employee employee) {
+        employee.setCreate_at(new Date());
         return this.employeeRepository.save(employee);
     }
 
@@ -49,6 +51,11 @@ public class EmployeeService {
 
     public void removeList(List<Long> ids){
         this.employeeRepository.deleteAllById(ids);
+    }
+
+    public List<Employee> getAllByMajor(Long id){
+        Major major = this.majorRepository.findById(id).get();
+        return this.employeeRepository.findByMajor(major);
     }
 
 }
